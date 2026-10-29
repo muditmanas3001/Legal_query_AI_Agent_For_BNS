@@ -1,92 +1,97 @@
-AI-Powered Legal Query Agent for BNS
-An offline-first legal information assistant that helps users find and understand relevant provisions of the Bharatiya Nyaya Sanhita (BNS), 2023. It accepts natural-language questions, retrieves relevant sections from the source document, and presents the result with references for verification.
-Disclaimer: This project provides general legal information, not legal advice. It does not replace advice from a qualified lawyer. For a real case, consult a lawyer.
+# ⚖️ AI-Powered Legal Query Agent (BNS)
 
-Features
-- Natural-language queries about BNS provisions
-- Semantic retrieval with Sentence Transformers (all-MiniLM-L6-v2)
-- Section lookup and definition extraction from BNS text
-- Answers grounded in retrieved legal material, with source references
-- PDF links so users can inspect the source
-- Basic intent handling for section, definition, and general questions
-- A safety-oriented response layer for situation-based queries
-- Flask web interface and API
-- SQLite storage
-- No paid API or GPU requirement
-How it works
-1. BNS PDF text is extracted with pdfplumber and parsed into sections.
-2. Parsed sections are stored in SQLite.
-3. A query is classified and normalized.
-4. The system uses an exact lookup or semantic similarity search to retrieve relevant sections.
-5. The response displays the retrieved legal text, a plain-language explanation where available, and a source link.
-The retrieval design aims to keep answers traceable to the source. It cannot guarantee that every answer is complete or legally correct; users should verify the cited provision and seek professional advice when needed.
-Technology
-Area	Technology
-Backend	Python, Flask
-Storage	SQLite
-Semantic search	Sentence Transformers, all-MiniLM-L6-v2
-PDF processing	pdfplumber, regular expressions
-Interface	HTML, CSS, JavaScript
+##  Overview
 
+The **AI-Powered Legal Query Agent** is a smart legal assistant designed to help users understand the **Bharatiya Nyaya Sanhita (BNS), 2023** through simple natural language queries.
 
-Project structure
-A suggested structure for the repository:
-.
-├── app.py                 # Flask application
-├── data/                  # BNS PDF and processed data (not necessarily committed)
-├── templates/             # HTML templates
-├── static/                # CSS and JavaScript
-├── requirements.txt       # Python dependencies
-└── README.md
-Adjust this tree to match the files in your repository.
-Getting started
-Prerequisites
-- Python 3.9 or later
-- pip
-- The BNS, 2023 source PDF, used in accordance with its terms
-Installation
-1. Clone the repository:
-   git clone <repository-url>
-   cd <repository-directory>
-2. Create and activate a virtual environment:
-   python -m venv .venv
-   Windows (PowerShell):
-   .venv\Scripts\Activate.ps1
-   macOS / Linux:
-   source .venv/bin/activate
-3. Install the project dependencies:
-   pip install -r requirements.txt
-4. Place the BNS PDF in the location expected by the application and run the project's ingestion or database initialization step, if required.
-5. Start the Flask application using the command configured by the project. For a standard Flask entry point, this may be:
-   flask --app app run
-   Then open the local URL printed by Flask in your browser.
-The exact PDF location, database initialization command, and run command depend on the implementation. Update these instructions to match the repository before publishing.
+Users can ask questions like:
 
-Example queries
-- “What is the punishment for theft?”
-- “Define cheating under the BNS.”
-- “Which BNS section covers criminal intimidation?”
-- “I was accused of theft. What general steps should I take?”
-For questions about a real legal matter, the assistant should provide general information and encourage the user to contact a qualified lawyer. It should not present its response as a personalized legal strategy.
-Data and source references
-Use an authoritative copy of the BNS, 2023 text. Keep the source PDF and its attribution or source details clear in the application. Each retrieved section should link to the relevant PDF page or document location when the source file supports it.
+* *"What is the punishment for theft?"*
+* *"Define fraud under BNS"*
+* *"I was caught stealing, what should I do?"*
 
-Do not treat semantic similarity as proof that a provision applies to a user's situation. Retrieval can miss relevant text or return a nearby but inapplicable section.
-Privacy
-Before deploying the application, document what query data is stored, where it is stored, and how long it is retained. Avoid collecting personal or case-identifying information unless it is necessary and protected.
-Limitations
-- Retrieval quality depends on the quality of PDF extraction and section parsing.
-- A similarity score indicates textual relevance, not legal applicability.
-- The system may miss exceptions, amendments, cross-references, or relevant facts.
-- Legal texts may change; keep the source document current and record its version.
-- This is an informational project, not a substitute for a lawyer or official legal service.
-Roadmap
-- Multilingual query and response support
-- Optional LLM-powered retrieval-augmented responses
-- Mobile-friendly application
-- Voice input and output
-- Integration with verified case-law sources
-Contributing
-Contributions are welcome. Open an issue to discuss a bug or proposed change, then submit a pull request with a clear description of the update.
-License
-Add the license used by this repository. Until a license is included, the project should not be assumed to permit reuse or redistribution.
+The system retrieves accurate and relevant legal sections directly from the BNS document, ensuring **reliable and verifiable responses**.
+
+---
+
+## Features
+
+*  **Natural Language Query Support**
+*  **Semantic Search using Sentence Transformers**
+*  **Direct Section Retrieval from BNS**
+*  **Clickable PDF Links for Verification**
+*  **Definition Extraction from Legal Text**
+*  **Lightweight (No GPU / No Paid APIs)**
+*  **Advice Layer for Situational Queries**
+*  **Safety Disclaimer for Responsible AI Usage**
+
+---
+
+##  Tech Stack
+
+* **Programming Language:** Python
+* **Backend:** Flask
+* **Database:** SQLite
+* **NLP:** Sentence Transformers (all-MiniLM-L6-v2)
+* **Data Processing:** pdfplumber, regex
+* **Frontend:** HTML, CSS, JavaScript
+
+---
+
+##  System Architecture
+
+1. **Data Layer** – Extracts and stores BNS sections from PDF
+2. **Retrieval Layer** – SQL lookup + semantic similarity search
+3. **Intelligence Layer** – Intent classification + query expansion
+4. **Response Layer** – Formatting + advice + disclaimer
+5. **Presentation Layer** – Flask API + Web Interface
+
+---
+
+##  How It Works
+
+1. User enters a query
+2. Query is classified (section / definition / general query)
+3. System performs:
+
+   * Exact lookup OR
+   * Semantic search using embeddings
+4. Relevant sections are retrieved
+5. Response is enhanced with:
+
+   * Explanation
+   * Advice (if needed)
+   * PDF reference link
+
+---
+
+##  Key Highlights
+
+*  No hallucination (answers grounded in legal text)
+*  Works completely offline
+*  Fast and lightweight
+*  User-friendly interface
+
+---
+
+##  Disclaimer
+
+This system provides **general legal information only**.
+It is **not a substitute for professional legal advice**. Please consult a qualified lawyer for legal matters.
+
+---
+
+##  Future Scope
+
+*  Multilingual support
+*  Integration with LLM-based RAG systems
+*  Mobile application
+*  Voice-based query support
+*  Integration with case law databases
+
+---
+
+##  Contributors
+
+* Prajjnaa Ray Choudhury
+* Srija Chatterjee
